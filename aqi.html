@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AQI</title>
+
+
+    <style>
+        /* Base Styles... Move along  */
+        
+        @import url('https://fonts.cdnfonts.com/css/sansation');
+        #monitor_background {
+            fill: #19345F;
+        }
+        
+        .separator {
+            fill: none;
+            stroke: #F1F1F1;
+            stroke-miterlimit: 10;
+        }
+        
+        .font {
+            font-family: 'Sansation', sans-serif;
+        }
+        
+        .bold {
+            font-weight: 700;
+        }
+        
+        .white {
+            fill: #F1F1F1;
+        }
+        
+        .xsm {
+            font-size: 23.769px;
+        }
+        
+        .small {
+            font-size: 36.5677px;
+        }
+        
+        .base {
+            font-size: 50px;
+        }
+        
+        .medium {
+            font-size: 63.9936px;
+        }
+        
+        .large {
+            font-size: 69.4787px;
+        }
+        
+        .xlg {
+            font-size: 93.2478px;
+        }
+        
+        .label {
+            display: none;
+        }
+        /*  AQI Levels  */
+        
+        .good,
+        #container.good-on #indicator {
+            fill: #55B948;
+        }
+        
+        .moderate,
+        #container.moderate-on #indicator {
+            fill: #F6EB14;
+        }
+        
+        .sensitive,
+        #container.sensitive-on #indicator {
+            fill: #F57E20;
+        }
+        
+        .unhealthy,
+        #container.unhealthy-on #indicator {
+            fill: #ED2024;
+        }
+        
+        .veryunhealthy,
+        #container.veryunhealthy-on #indicator {
+            fill: #8E4098;
+        }
+        
+        .hazardous,
+        #container.hazardous-on #indicator {
+            fill: #7D1226;
+        }
+        /*  Central AQI Indicator  */
+        
+        #indicator,
+        .indicator {
+            stroke: #F1F1F1;
+            stroke-miterlimit: 10;
+        }
+        /*  Central AQI Indicator  */
+        
+        .gauge {
+            opacity: 0.5;
+            stroke: #F1F1F1;
+            stroke-miterlimit: 10;
+        }
+        
+        path.gauge,
+        tspan.pm25_label {
+            display: none;
+        }
+        
+        #container.veryunhealthy-on #pm25_number,
+        #container.hazardous-on #pm25_number {
+            fill: #F1F1F1;
+        }
+        
+        #container.good-on path.gauge.good,
+        #container.moderate-on path.gauge.moderate,
+        #container.sensitive-on path.gauge.sensitive,
+        #container.veryunhealthy-on path.gauge.veryunhealthy,
+        #container.unhealthy-on path.gauge.unhealthy,
+        #container.hazardous-on path.gauge.hazardous,
+        #container.good-on tspan.pm25_label.pm25_label__good,
+        #container.moderate-on tspan.pm25_label.pm25_label__moderate,
+        #container.sensitive-on tspan.pm25_label.pm25_label__sensitive,
+        #container.veryunhealthy-on tspan.pm25_label.pm25_label__veryunhealthy,
+        #container.unhealthy-on tspan.pm25_label.pm25_label__unhealthy,
+        #container.hazardous-on tspan.pm25_label.pm25_label__hazardous {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div id="container" class="">
+
+        <svg height="612px" width="792px" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 792 612" style="enable-background:new 0 0 792 612;">
+
+            <path id="monitor_background" d="M784.74,401.52c0-215.62-174.8-390.42-390.42-390.42S3.91,185.9,3.91,401.52c0,71.16,19.05,137.86,52.3,195.31
+                h676.24C765.7,539.38,784.74,472.68,784.74,401.52z" />
+            <g>
+
+                <path class="gauge good"
+                    d="M167.02,401.52c0-41.41,11.08-80.23,30.43-113.67l-78.75-45.47C91.61,289.2,76.1,343.55,76.1,401.52H167.02z" />
+
+                <path class="gauge moderate"
+                    d="M280.66,204.64l-45.47-78.75c-48.29,27.94-88.55,68.21-116.5,116.5l78.75,45.47 C217.4,253.36,246.16,224.6,280.66,204.64z" />
+
+                <path class="gauge sensitive"
+                    d="M394.32,174.21V83.29c-57.97,0-112.32,15.51-159.14,42.6l45.47,78.75 C314.09,185.29,352.91,174.21,394.32,174.21z" />
+
+                <path class="gauge veryunhealthy"
+                    d="M591.2,287.85l78.75-45.47c-27.94-48.29-68.21-88.55-116.5-116.5l-45.47,78.75 C542.49,224.6,571.25,253.36,591.2,287.85z" />
+
+                <path class="gauge unhealthy"
+                    d="M507.99,204.64l45.47-78.75c-46.81-27.09-101.16-42.6-159.14-42.6v90.92 C435.74,174.21,474.56,185.29,507.99,204.64z" />
+
+                <path class="gauge hazardous"
+                    d="M621.63,401.52h90.92c0-57.97-15.51-112.32-42.6-159.14l-78.75,45.47 C610.55,321.29,621.63,360.11,621.63,401.52z" />
+
+            </g>
+            <text transform="matrix(1 0 0 1 72.5356 466.084)">
+                <tspan x="-30" y="0" class="white font small">Current Air Quality As Of: </tspan>
+                <tspan x="400.06" y="0" class="font white bold small" id="pm25_time">Data Unavailable</tspan>
+                <tspan x="441.6" y="0" class="font white small" id="aqi_date"></tspan>
+            </text>
+            <line class="separator" x1="402.77" y1="498.45" x2="402.77" y2="578.28" />
+            <g>
+                <g>
+                    <text transform="matrix(1 0 0 1 139.1675 556.9473)" class="font white bold large"
+                        id="pm25_number">N/A</text>
+                </g>
+                <g>
+                    <text transform="matrix(1 0 0 1 452.377 556.9473)" class="font white bold large" id="pm25_label">PM
+                        2.5</text>
+                </g>
+            </g>
+
+            <path id="indicator" d="M591.2,287.85c-19.96-34.49-48.72-63.25-83.21-83.21c-33.44-19.35-72.26-30.43-113.67-30.43
+                c-41.41,0-80.23,11.08-113.67,30.43c-34.49,19.96-63.25,48.72-83.21,83.21c-19.35,33.44-30.43,72.26-30.43,113.67h227.31h227.31
+                C621.63,360.11,610.55,321.29,591.2,287.85z" />
+            <text transform="matrix(1 0 0 1 336.729 287.8657)">
+                <tspan x="0" y="0" class="font bold xlg" id="pm25_label_number">68</tspan>
+                <tspan x="-24.3" y="76.79" class="font bold medium pm25_label pm25_label__good">Good</tspan>
+                <tspan x="-81.3" y="76.79" class="font bold medium pm25_label pm25_label__moderate">Moderate</tspan>
+                <tspan x="-75.3" y="76.79" class="font bold medium pm25_label pm25_label__sensitive">Sensitive</tspan>
+                <tspan x="-95.3" y="76.79" class="font bold medium pm25_label pm25_label__unhealthy">Unhealthy</tspan>
+                <tspan x="-120.3" y="76.79" class="font white bold base pm25_label pm25_label__veryunhealthy">Very
+                    Unhealthy
+                </tspan>
+                <tspan x="-100.3" y="76.79" class="font white bold medium pm25_label pm25_label__hazardous">Hazardous
+                </tspan>
+            </text>
+            <g>
+
+                <path class="indicator good"
+                    d="M118.69,242.38l-44.1-25.46c-31.42,54.3-49.41,117.35-49.41,184.6H76.1 C76.1,343.55,91.61,289.2,118.69,242.38z" />
+                <path class="indicator moderate"
+                    d="M74.59,216.92l44.1,25.46c27.94-48.29,68.21-88.55,116.5-116.5l-25.46-44.1 C153.71,114.2,107,160.9,74.59,216.92z" />
+                <path class="indicator sensitive"
+                    d="M394.32,83.29V32.37c-67.25,0-130.29,17.99-184.6,49.41l25.46,44.1C282,98.8,336.35,83.29,394.32,83.29z" />
+                <path class="indicator unhealthy"
+                    d="M553.46,125.89l25.46-44.1c-54.3-31.42-117.35-49.41-184.6-49.41v50.92 C452.3,83.29,506.65,98.8,553.46,125.89z" />
+                <path class="indicator veryunhealthy"
+                    d="M669.96,242.38l44.1-25.46C681.65,160.9,634.94,114.2,578.92,81.79l-25.46,44.1 C601.75,153.83,642.02,194.09,669.96,242.38z" />
+                <path class="indicator hazardous"
+                    d="M712.55,401.52h50.92c0-67.25-17.99-130.29-49.41-184.6l-44.1,25.46 C697.04,289.2,712.55,343.55,712.55,401.52z" />
+            </g>
+
+
+
+
+            <path id="g050" class="label"
+                d="M113.96,401.52 c0-154.84,125.52-280.37,280.37-280.37s280.37,125.52,280.37,280.37" />
+            <text>
+                <textPath xlink:href="#g050" startOffset="14.3555%">
+                    <tspan class="font white bold xsm">50</tspan>
+                </textPath>
+            </text>
+
+            <path id="g100" class="label"
+                d="M113.52,401.74 c0-154.96,125.62-280.59,280.59-280.59s280.59,125.62,280.59,280.59" />
+            <text>
+                <textPath xlink:href="#g100" startOffset="30.5664%">
+                    <tspan class="font white bold xsm"> 100</tspan>
+                </textPath>
+            </text>
+
+            <path id="g150" class="label"
+                d="M113.96,401.52 c0-154.84,125.52-280.37,280.37-280.37s280.37,125.52,280.37,280.37" />
+            <text>
+                <textPath xlink:href="#g150" startOffset="47.9248%">
+                    <tspan class="font white bold xsm">150</tspan>
+                </textPath>
+            </text>
+
+            <path id="g200" class="label"
+                d="M113.96,401.52 c0-154.84,125.52-280.37,280.37-280.37s280.37,125.52,280.37,280.37" />
+            <text>
+                <textPath xlink:href="#g200" startOffset="64.0381%">
+                    <tspan class="font white bold xsm">200</tspan>
+                </textPath>
+            </text>
+
+            <path id="g300" class="label"
+                d="M113.96,401.52c0-154.84,125.52-280.37,280.37-280.37s280.37,125.52,280.37,280.37" />
+            <text>
+                <textPath xlink:href="#g300" startOffset="80.9764%">
+                    <tspan class="font white bold xsm">300</tspan>
+                </textPath>
+            </text>
+        </svg>
+
+    </div>
+
+
+
+
+    <script src="https://unpkg.com/moment@2.29.4/moment.js"></script>
+
+    <script>
+        (async function() {
+
+
+            /**
+              Testing area, change the use_date to view 
+              historical data from other dates
+            */
+
+            const use_historical = true;
+            const use_date = '2022-12-13'
+
+            const urlParams = new URLSearchParams(window.location.search),
+                date = urlParams.get('date') || use_date;
+
+            console.log({
+                urlParams
+            });
+
+
+            const current = 'https://apis.matsugov.us/api/v2/air_quality_epa/current',
+                historical = `https://apis.matsugov.us/api/v2/air_quality_epa/historical?date=${date || '2022-12-13'}T00-0000`,
+                api_key = 'a26eea59730cb312841e38b1a9a42cbc1475ac66394d0ee7ccf152cee487aee8';
+
+
+            const get = async function() {
+                let req = await fetch((use_historical || urlParams.get('historical')) ? historical : current, {
+                        headers: {
+                            'X-DreamFactory-API-Key': api_key
+                        }
+                    }),
+                    res = await req.json();
+
+                return res;
+            }
+
+
+
+
+            let qualities = {
+                1: 'good-on',
+                2: 'moderate-on',
+                3: 'sensitive-on',
+                4: 'unhealthy-on',
+                5: 'veryunhealthy-on',
+                6: 'hazardous-on'
+            }
+
+            let json = await get(),
+                pm25 = json.find(o => o.ParameterName === 'PM2.5'),
+                time_observed = moment(`${pm25.DateObserved.trim()} ${('00' + pm25.HourObserved).slice(-2)}:00:00`),
+                $container = document.getElementById('container'),
+                $pm25_number = document.getElementById('pm25_number'),
+                $pm25_label_number = document.getElementById('pm25_label_number'),
+                $pm25_time = document.getElementById('pm25_time');
+
+
+            $pm25_number.innerHTML = pm25.AQI + ' AQI';
+            $pm25_label_number.innerHTML = pm25.AQI;
+
+            $pm25_time.innerHTML = time_observed.format('ha, MMM Do');
+
+            $container.classList.remove(...$container.classList);
+            $container.classList.add(qualities[pm25.Category.Number]);
+
+            //console.log({time_observed,pm25});
+
+        })();
+    </script>
+</body>
+
+</html>
